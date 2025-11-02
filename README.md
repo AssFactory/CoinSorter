@@ -1,28 +1,52 @@
-Coin Sorter
-This is a machine designed for the automatic sorting of coins. It is built for mobile and robust use, powered by a standard 18V battery (AMPShare System).
+# Automatic Coin Sorter
 
-Operation is managed via a minimalist single-button control and a 160x128 pixel color display, which presents all essential information at a glance.
+A DIY project to build an automated Euro coin sorter. This machine uses 3D-printed mechanical parts to separate coins and is controlled by a Raspberry Pi Pico W running MicroPython.
 
-Key Functions
-1. Sorting & Counting The machine's core function is to sort all eight Euro coin denominations (1 Cent to 2 Euro). During the sorting process, the machine detects each coin and updates the count in real-time.
 
-2. Color Display & Information The display acts as the primary information hub, permanently showing:
 
-Total Value: The total monetary value of all registered coins in Euros.
+## 📝 Overview
 
-Count per Type: A detailed list showing how many coins of each of the eight denominations (e.g., "10 x 2€", "15 x 1€", etc.) have been counted.
+The goal of this project is to automatically identify Euro coins (from 1 Cent to 2 Euros) and sort them into separate containers. The mechanics are based entirely on 3D-printed parts.
 
-3. One-Button Operation All machine control is handled by a single, multi-function button:
+A Pi Pico W controls the entire process. A DC motor drives the coin mechanism, while an ST7735 display provides feedback on the status or counted totals.
 
-Short Press (Start/Stop): A short press starts the sorting process. Another short press stops it immediately.
+---
 
-Long Press (Reset): If the button is held for longer than one second while the machine is off, the internal fault counter is reset.
+## ⚙️ Hardware Components
 
-Intelligent Protection Features
-The machine is equipped with intelligent motor management to ensure longevity and smooth operation.
+* **Mechanics:** 3D-printed sorting mechanism (STLs are located in the `/stl` folder)
+* **Microcontroller:** Raspberry Pi Pico W
+* **Motor:** Standard DC Motor
+* **Motor Driver:** DRV8833
+* **Sensor:** INA219 (Current sensor, e.g., for jam detection)
+* **Display:** 160x128 RGB Display (ST7735)
 
-1. Automatic Jam Detection The system continuously monitors the motor load. If a coin blocks the mechanism or the motor is stalled for any reason, the machine detects this state immediately and stops the main operation to prevent damage.
+---
 
-2. Automatic Jam Recovery As soon as a jam is detected, the machine independently attempts to clear the blockage. It briefly runs the motor in reverse to free the stuck coin and then automatically restarts the sorting process.
+## 🐍 Software
 
-3. Permanent Fault Lock-Out If the machine fails to resolve a jam after multiple consecutive attempts (e.g., 5 tries), it enters a permanent fault state. The motor is disabled to prevent overheating or damage. This state is only cleared when the user manually resets the fault counter via a long button press.
+This project is written in **MicroPython**.
+
+---
+
+## 🚀 Setup & Installation
+
+1.  **Mechanics:** Print all required parts from the `/stl` folder.
+2.  **Electronics:** Connect the components to the Pi Pico W according to the (still to be created) wiring diagram.
+3.  **Software:**
+    * Flash newest MicroPython firmware onto your Pi Pico W.
+    * Upload `main.py`, `config.py` and also `\lib`,`\image`,`\font` folders to the Pico.
+4.  **Test:** Start the machine and insert coins.
+
+---
+
+## 🤝 Acknowledgements & Reused Code
+
+The code in this repository reuses and adapts functions from the excellent work of the MicroPython community. Their libraries provided the foundation for implementing the detailed hardware control functions of this project.
+
+Special thanks go to:
+* **[AnthonyKNorman](https://github.com/AnthonyKNorman/MicroPython_ST7735)** a simple light weight ST7735 driver.
+
+* **[antirez](https://github.com/antirez/microfont)** and **[peter-l5](https://github.com/peter-l5/framebuf2)** for extending the frambuf class
+
+* **[(https://github.com/robert-hh](https://github.com/robert-hh/INA219)** for the INA219 driver.
