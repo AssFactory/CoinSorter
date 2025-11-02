@@ -49,4 +49,4 @@ Special thanks go to:
 
 * **[antirez](https://github.com/antirez/microfont)** and **[peter-l5](https://github.com/peter-l5/framebuf2)** for extending the frambuf class
 
-* **[(https://github.com/robert-hh](https://github.com/robert-hh/INA219)** for the INA219 driver.
+* **[robert-hh](https://github.com/robert-hh/INA219)** for the INA219 driver.
