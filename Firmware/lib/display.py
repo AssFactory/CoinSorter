@@ -51,7 +51,7 @@ class CoinSortDisplay:
         fb.text('100x1.00', 8, 113, color)
         fb.text('100x2.00', 88, 113, color)
 
-        font = MicroFont("victor_B_32.mfnt",cache_index=True)
+        font = MicroFont("font/victor_B_32.mfnt",cache_index=True)
         color = 1 # Color must be in the framebuffer color mode format.
         angle = 0
         font.write("100.00€", fb, RGB565, 160, 128, 0, 0, color, rot=angle, x_spacing=0, y_spacing=0)
@@ -65,5 +65,5 @@ class CoinSortDisplay:
     
     def show_amount(self):
         self.display.fill_screen(0xffff)
-        self.display.p_string(0,0,"Hello World")
-        bmp('Bosch_Logo.bmp',self.display,10,10,1)
+        #self.display.p_string(0,0,"Hello World")
+        bmp('image/Boot_Logo.bmp',self.display,10,10,1)
